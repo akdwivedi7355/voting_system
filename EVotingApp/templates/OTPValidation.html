@@ -1,0 +1,78 @@
+{% load static %}
+<html>
+<head>
+<title>E-Voting</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
+ <script LANGUAGE="Javascript" >
+function validate(){
+	var x=document.forms["f1"]["t1"].value;
+	
+	if(x == null || x==""){
+		window.alert("OTP must be enter");
+		document.f1.username.focus();
+		return false;
+	}
+	
+	return true;
+}
+		
+	
+	</script>
+	<style>
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 10%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .login-container input[type="submit"] {
+            width: 10%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .login-container input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+	<div id="menu">
+		<ul><center>
+      <li><a href="{% url 'CastVote' %}">Cast Your Vote</a></li>
+	  <li><a href="{% url 'index' %}">Logout</a></li>		
+		</center></ul>
+<br class="clearfix" />
+				</div>
+				<center>	
+	<div id="splash">
+		<img class="pic" src="{% static 'images/investor.jpg' %}" width="400" height="350" alt="" />
+	</div>	
+	<br/><br/>
+<br/><br/>	
+</center>
+<b>	
+<form name="f1" method="post" action={% url 'OTPAction' %} OnSubmit="return validate()">
+	{% csrf_token %}<br/></b>
+	<br/>
+	<center>
+		<div class="login-container">
+			<br/><br/>
+			<font size="" color="black"><center>{{ data }}</center></font>
+				<h2>OTP Validation Screen</h2>	
+					<font size="3" color="black">Your&nbsp;OTP : <input type="text" name="t1" style="font-family: Comic Sans MS" size="30"/>
+						<br/>
+				<input type="submit" value="Submit">
+			</center>
+		</div>
+				
+				
+	</body>
+</html>
